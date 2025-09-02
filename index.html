@@ -12,10 +12,9 @@
       --card:#ffffff;
       --text:#1f2937;
       --muted:#6b7280;
-      --green:#2f7d32;        /* button green */
+      --green:#2f7d32;        
       --green-press:#296d2c;
-      --bar:#ff6a33;          /* orange progress */
-      --ring:#e5e7eb;
+      --bar:#ff6a33;          
       --success:#15b34a;
       --shadow: 0 10px 25px rgba(0,0,0,.08);
       --radius:18px;
@@ -24,7 +23,7 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
       background:var(--bg);
       color:var(--text);
       display:grid;
@@ -64,7 +63,6 @@
     .check{
       width:22px;height:22px;border-radius:6px;
       background:#19c15a;display:grid;place-items:center;
-      box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
     }
     .check svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
     .bar{
@@ -73,21 +71,21 @@
     }
     .actions{display:grid;gap:12px; margin-top:6px}
     .btn{
-      appearance:none;border:0;cursor:pointer;
+      text-decoration:none;
+      border:0;
       width:100%;
       border-radius:12px;
       padding:14px 16px;
       background:var(--green);
-      color:#fff;font-weight:700;
+      color:#fff;
+      font-weight:700;
       letter-spacing:.2px;
       display:flex;align-items:center;justify-content:center;gap:10px;
       transition:.15s transform ease, .15s filter ease, .15s background-color ease;
     }
-    .btn:focus-visible{outline:3px solid #9bd4a1; outline-offset:2px}
-    .btn:hover{filter:brightness(1.02)}
+    .btn:hover{filter:brightness(1.05)}
     .btn:active{transform:translateY(1px); background:var(--green-press)}
     .emoji{font-size:18px; line-height:1}
-    /* small screen spacing */
     @media (max-width:420px){
       .card{padding:22px}
       .subtitle{font-size:14px}
@@ -96,28 +94,28 @@
   </style>
 </head>
 <body>
-  <main class="card" role="region" aria-labelledby="title">
-    <h1 id="title" class="title">Quick Survey</h1>
+  <main class="card">
+    <h1 class="title">Quick Survey</h1>
     <p class="subtitle">Answer 3 simple questions to unlock exclusive offers.</p>
 
-    <div class="row" aria-live="polite">
-      <span class="check" aria-hidden="true">
+    <div class="row">
+      <span class="check">
         <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
       </span>
       <span>Thank you! Your answers are recorded.</span>
     </div>
 
-    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" aria-label="Progress"></div>
+    <div class="bar"></div>
 
     <div class="actions">
-      <button class="btn" type="button">
-        <span class="emoji" aria-hidden="true">👉</span>
+      <a href="https://www.temu.com/" target="_blank" class="btn">
+        <span class="emoji">👉</span>
         <span>Show Me Deals Now</span>
-      </button>
-      <button class="btn" type="button">
-        <span class="emoji" aria-hidden="true">🔥</span>
+      </a>
+      <a href="https://www.temu.com/" target="_blank" class="btn">
+        <span class="emoji">🔥</span>
         <span>Get My Special Offer</span>
-      </button>
+      </a>
     </div>
   </main>
 </body>
