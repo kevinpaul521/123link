@@ -1,122 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quick Survey</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f4f6f8;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --green:#2f7d32;        
-      --green-press:#296d2c;
-      --bar:#ff6a33;          
-      --success:#15b34a;
-      --shadow: 0 10px 25px rgba(0,0,0,.08);
-      --radius:18px;
+    body {
+      margin: 0;
+      font-family: "Arial", sans-serif;
+      background: #f9fafb;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
-      background:var(--bg);
-      color:var(--text);
-      display:grid;
-      place-items:center;
+    .survey-box {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 420px;
+      padding: 30px;
+      text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
     }
-    .card{
-      width:min(92vw, 560px);
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:28px;
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #111;
     }
-    .title{
-      margin:6px 0 10px;
-      text-align:center;
-      font-weight:700;
-      font-size: clamp(20px, 2.2vw + 12px, 26px);
+    p {
+      font-size: 15px;
+      margin-bottom: 25px;
+      color: #555;
     }
-    .subtitle{
-      margin:0 auto 16px;
-      text-align:center;
-      color:var(--muted);
-      max-width:40ch;
-      line-height:1.5;
-      font-size:15px;
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #ff5722;
+      color: #fff;
+      font-weight: bold;
+      transition: 0.3s;
     }
-    .row{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      justify-content:center;
-      margin:10px 0 14px;
-      color:#0f5132;
-      font-weight:600;
-      font-size:15px;
+    .btn:hover {
+      background: #e64a19;
     }
-    .check{
-      width:22px;height:22px;border-radius:6px;
-      background:#19c15a;display:grid;place-items:center;
+    .progress {
+      margin-top: 20px;
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
     }
-    .check svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .bar{
-      height:8px;border-radius:999px;background:var(--bar);
-      margin:10px auto 16px; width:85%;
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: #ff5722;
+      transition: width 0.4s ease;
     }
-    .actions{display:grid;gap:12px; margin-top:6px}
-    .btn{
-      text-decoration:none;
-      border:0;
-      width:100%;
-      border-radius:12px;
-      padding:14px 16px;
-      background:var(--green);
-      color:#fff;
-      font-weight:700;
-      letter-spacing:.2px;
-      display:flex;align-items:center;justify-content:center;gap:10px;
-      transition:.15s transform ease, .15s filter ease, .15s background-color ease;
+    .cta-box {
+      margin-top: 20px;
+      display: none;
     }
-    .btn:hover{filter:brightness(1.05)}
-    .btn:active{transform:translateY(1px); background:var(--green-press)}
-    .emoji{font-size:18px; line-height:1}
-    @media (max-width:420px){
-      .card{padding:22px}
-      .subtitle{font-size:14px}
-      .btn{padding:13px}
+    .cta-box .btn {
+      background: #388e3c;
+    }
+    .cta-box .btn:hover {
+      background: #2e7d32;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1 class="title">Quick Survey</h1>
-    <p class="subtitle">Answer 3 simple questions to unlock exclusive offers.</p>
 
-    <div class="row">
-      <span class="check">
-        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-      </span>
-      <span>Thank you! Your answers are recorded.</span>
+  <div class="survey-box">
+    <h1>Quick Survey</h1>
+    <p>Answer 3 simple questions to unlock exclusive offers.</p>
+    
+    <div id="quiz">
+      <p>Do you usually shop online?</p>
+      <button class="btn" onclick="nextStep()">Yes, I shop online</button>
+      <button class="btn" onclick="nextStep()">No, not often</button>
+    </div>
+    
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <div class="bar"></div>
-
-    <div class="actions">
-      <a href="https://www.temu.com/" target="_blank" class="btn">
-        <span class="emoji">👉</span>
-        <span>Show Me Deals Now</span>
-      </a>
-      <a href="https://www.temu.com/" target="_blank" class="btn">
-        <span class="emoji">🔥</span>
-        <span>Get My Special Offer</span>
-      </a>
+    <div class="cta-box" id="ctaBox">
+      <button class="btn" onclick="goToOffer()">👉 Show Me Deals Now</button>
+      <button class="btn" onclick="goToOffer()">🔥 Get My Special Offer</button>
     </div>
-  </main>
+  </div>
+
+  <script>
+    let step = 0;
+    const questions = [
+      ["Do you usually shop online?", ["Yes, I shop online", "No, not often"]],
+      ["What kind of products interest you most?", ["Electronics", "Fashion", "Home & Lifestyle"]],
+      ["Would you like to access today’s top deals?", ["Yes, show me deals!", "Maybe later"]]
+    ];
+    
+    function nextStep() {
+      step++;
+      const quiz = document.getElementById("quiz");
+      const progressBar = document.getElementById("progressBar");
+      const ctaBox = document.getElementById("ctaBox");
+
+      if (step < questions.length) {
+        let q = questions[step];
+        quiz.innerHTML = `<p>${q[0]}</p>` + q[1].map(ans => `<button class='btn' onclick='nextStep()'>${ans}</button>`).join("");
+        progressBar.style.width = ((step / questions.length) * 100) + "%";
+      } else {
+        progressBar.style.width = "100%";
+        quiz.innerHTML = `<p>✅ Thank you! Your answers are recorded.</p>`;
+        ctaBox.style.display = "block";
+      }
+    }
+
+    function goToOffer() {
+      window.location.href = "https://www.temu.com";
+    }
+  </script>
+
 </body>
 </html>
